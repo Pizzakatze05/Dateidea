@@ -23,8 +23,31 @@
       border-radius: 20px;
 
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      text-aligne: center;
+      text-align: center;
     }
+
+
+    .ja-button, .nein-button {
+      background-color: #d11a5b;
+      color: white;
+      font-family:'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: bold;
+
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+
+      margin-top: 25px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .ja-button, .nein-button :hover{
+      background-color: #b0124a;
+      transfrom: scale(1.05);
+    }
+
 
     h1{
       color: #d11a5b;
@@ -37,9 +60,20 @@
     p{
       color: #4a4a4a;
       font-size: 40px;
-      line-allign: 1.4;
+      line-height: 1.4;
       margin-bottom: 0;
     }
+
+    .ja-button:active {
+      background-color: #940f3c;
+      transform: scale(0.92);
+    }
+
+    .nein-button:active {
+      background-color: #475569;
+      transform: scale(0.92);
+    }
+
   </style>
 </head>
 
@@ -47,6 +81,14 @@
   <div class="card">
     <h1>Hallo Schatz! &#10084;&#65039</h1>
     <p> Willst du mit mir auf ein Date gehen?</p>
+
+    <button class="ja-button">
+      <b1> Jaaaaaa </b1>
+    </button>
+
+    <button class="nein-button">
+      <b2> nein danke</b2>
+    </button>
   </div>
 </body>
 
