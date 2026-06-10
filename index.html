@@ -96,15 +96,15 @@
 
     neinButton.addEventListener('click', function(){
 
-      if (aktelleGroeße < 100)
+      if (aktuelleGroeße < 130)
       {
         aktuelleGroeße = aktuelleGroeße + 10;
 
-        jaButton.style.fontSize = aktuelleGroeße + "px";
-        jaButton.style.padding = (aktuelleGroeße * 0.6) + "px" + (aktuelleGroeße * 1.3) + "px";
+        jaButton.style.fontSize = aktuelleGroeße + "px ";
+        jaButton.style.padding = (aktuelleGroeße * 0.6) + "px " + (aktuelleGroeße * 1.3) + "px";
       }
 
-      if (aktuelleGroeße >= 80)
+      if (aktuelleGroeße >= 100)
       {
         neinButton.style.display = "none";
       }
