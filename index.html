@@ -27,7 +27,7 @@
     }
 
 
-    .ja-button, .nein-button {
+    .ja-button, .nein-button, .Wunsch-button {
       background-color: #d11a5b;
       color: white;
       font-family:'Playfair Display', serif;
@@ -60,7 +60,7 @@
       margin-bottom: 0;
     }
 
-    .ja-button:active {
+    .ja-button, .Wunsch-button:active {
       background-color: #940f3c;
       transform: scale(0.92);
     }
@@ -108,6 +108,19 @@
       {
         neinButton.style.display = "none";
       }
+    });
+
+    jaButton.addEventListener('click',function(){
+
+      document.querySelector('.card').innerHTML = ' ' +
+              '<p> Du entscheidest was wir machen 💓</p> ' +
+              '<button id = "WdWB" class = "Wunsch-button"> Wunsch deiner Wahl</button>'
+
+      const Wunschbutton = document.getElementById('WdWB');
+
+      Wunschbutton.addEventListener('click',function(){
+        window.open('https://calendar.google.com/calendar/render?action=TEMPLATE\', \'_blank');
+      })
     });
 
   </script>
