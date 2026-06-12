@@ -1,51 +1,44 @@
 ﻿<!DOCTYPE html>
-
 <html>
-
 <head>
-   <style>
-    body{
+  <style>
+    body {
       background-color: #ffe6eb;
       font-family: Caveat, cursive;
       margin: 0;
       padding: 0;
-
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
     }
-    .card{
+    .card {
       background-color: #ffffff;
       max-width: 700px;
       width: 85%;
       padding: 30px;
       border-radius: 20px;
-
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
 
-
-    .ja-button, .nein-button, .Wunsch-button {
+    /* Alle Buttons nutzen das einheitliche, schicke Design */
+    .ja-button, .nein-button, .kalender-save-btn {
       background-color: #d11a5b;
       color: white;
-      font-family:'Playfair Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 18px;
       font-weight: bold;
-
       padding: 12px 24px;
       border: none;
       border-radius: 25px;
       cursor: pointer;
-
       margin-top: 25px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-
-    h1{
+    h1 {
       color: #d11a5b;
       font-family: 'Playfair Display', serif;
       font-size: 60px;
@@ -53,14 +46,14 @@
       text-align: center;
     }
 
-    p{
+    p {
       color: #4a4a4a;
       font-size: 40px;
       line-height: 1.4;
-      margin-bottom: 0;
+      margin-bottom: 20px;
     }
 
-    .ja-button, .Wunsch-button:active {
+    .ja-button:active, .kalender-save-btn:active {
       background-color: #940f3c;
       transform: scale(0.92);
     }
@@ -70,59 +63,145 @@
       transform: scale(0.92);
     }
 
+    /* --- STYLING FÜR DEN KALENDER UND DIE IDEEN-LISTE --- */
+    .kalender-input {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      padding: 10px 20px;
+      border: 2px solid #d11a5b;
+      border-radius: 15px;
+      color: #d11a5b;
+      outline: none;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .ideen-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .idee-btn {
+      background-color: #fff;
+      color: #d11a5b;
+      border: 2px solid #d11a5b;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .idee-btn:hover {
+      background-color: #ffe6eb;
+    }
+
+    .idee-btn:active {
+      background-color: #d11a5b;
+      color: white;
+      transform: scale(0.96);
+    }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>Hallo Schatz! &#10084;&#65039</h1>
-    <p> Willst du mit mir auf ein Date gehen?</p>
+<div class="card">
+  <h1>Hallo Schatz! &#10084;&#65039;</h1>
+  <p>Willst du mit mir auf ein Date gehen?</p>
 
-    <button id= "jaBtn" class="ja-button">
-      <b1> Jaaaaaa </b1>
-    </button>
+  <button id="jaBtn" class="ja-button">Jaaaaaa</button>
+  <button id="neinBtn" class="nein-button">nein danke</button>
+</div>
 
-    <button id= "neinBtn" class="nein-button">
-      <b2> nein danke</b2>
-    </button>
-  </div>
+<script>
+  const jaButton = document.getElementById('jaBtn');
+  const neinButton = document.getElementById('neinBtn');
 
-  <script>
+  let aktuelleGroeße = 18;
 
-    const jaButton = document.getElementById('jaBtn');
-    const neinButton = document.getElementById('neinBtn');
+  // --- NEIN BUTTON LOGIK ---
+  neinButton.addEventListener('click', function(){
+    if (aktuelleGroeße < 130) {
+      aktuelleGroeße = aktuelleGroeße + 10;
+      jaButton.style.fontSize = aktuelleGroeße + "px";
+      jaButton.style.padding = (aktuelleGroeße * 0.6) + "px " + (aktuelleGroeße * 1.3) + "px";
+    }
+    if (aktuelleGroeße >= 100) {
+      neinButton.style.display = "none";
+    }
+  });
 
-    let aktuelleGroeße = 18;
+  // --- JA BUTTON LOGIK ---
+  jaButton.addEventListener('click', function(){
 
-    neinButton.addEventListener('click', function(){
+    document.querySelector('.card').innerHTML = `
+        <p>Wann hast du Zeit? 📅</p>
+        <input type="date" id="datePicker" class="kalender-input">
 
-      if (aktuelleGroeße < 130)
-      {
-        aktuelleGroeße = aktuelleGroeße + 10;
+        <p>Und was machen wir? 💓</p>
+        <div class="ideen-container">
+          <button class="idee-btn" data-idee="Eis essen 🍦">Eis essen 🍦</button>
+          <button class="idee-btn" data-idee="ins Restaurant gehen 🍝">ins Restaurant gehen 🍝</button>
+          <button class="idee-btn" data-idee="einen Filmabend machen 🎬">Filmabend 🎬</button>
+          <button class="idee-btn" data-idee="ins Kino gehen 🍿">ins Kino gehen 🍿</button>
+          <button class="idee-btn" data-idee="Wunsch deiner Wahl ✨">Wunsch deiner Wahl ✨</button>
+        </div>
+      `;
 
-        jaButton.style.fontSize = aktuelleGroeße + "px ";
-        jaButton.style.padding = (aktuelleGroeße * 0.6) + "px " + (aktuelleGroeße * 1.3) + "px";
-      }
+    const datePicker = document.getElementById('datePicker');
+    const heute = new Date().toISOString().split('T')[0];
+    datePicker.min = heute;
+    datePicker.value = heute;
 
-      if (aktuelleGroeße >= 100)
-      {
-        neinButton.style.display = "none";
-      }
+    const ideenButtons = document.querySelectorAll('.idee-btn');
+
+    ideenButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const gewaehltesDatum = datePicker.value; // Format: YYYY-MM-DD
+        const gewaehlteIdee = this.getAttribute('data-idee');
+
+        // 1. Datum für die Anzeige auf der Website formatieren (DD.MM.YYYY)
+        const datumTeile = gewaehltesDatum.split('-');
+        const deutschesDatum = `${datumTeile[2]}.${datumTeile[1]}.${datumTeile[0]}`;
+
+        // 2. Datum für Google Kalender vorbereiten (Format braucht YYYYMMDD)
+        const googleDatum = gewaehltesDatum.replace(/-/g, '');
+
+        // Wir erstellen ein ganztägiges Event. Enddatum muss bei Google der exakt nächste Tag sein.
+        const dateObj = new Date(gewaehltesDatum);
+        dateObj.setDate(dateObj.getDate() + 1);
+        const googleEndDatum = dateObj.toISOString().split('T')[0].replace(/-/g, '');
+
+        // Titel für den Kalendereintrag codieren (Leerzeichen werden zu +)
+        const kalenderTitel = encodeURIComponent("Date: " + gewaehlteIdee);
+
+        // Das finale Fenster mit dem automatischen Google-Kalender-Button
+        document.querySelector('.card').innerHTML = `
+            <h1>Perfekt! 🥰</h1>
+            <p>Ausgewählt: <span style="font-weight: bold; color: #d11a5b;">${gewaehlteIdee}</span></p>
+            <p>am <span style="color: #d11a5b; font-weight: bold;">${deutschesDatum}</span></p>
+
+            <button id="googleKalenderBtn" class="kalender-save-btn">
+              In Google Kalender eintragen 🗓️
+            </button>
+            <p style="font-size: 25px; margin-top: 20px; color: #777;">Klicke oben, um es direkt zu speichern!</p>
+          `;
+
+        // Event-Listener für den finalen Google-Kalender-Link
+        document.getElementById('googleKalenderBtn').addEventListener('click', function() {
+          const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${kalenderTitel}&dates=${googleDatum}/${googleEndDatum}`;
+          window.open(googleUrl, '_blank');
+        });
+
+      });
     });
 
-    jaButton.addEventListener('click',function(){
-
-      document.querySelector('.card').innerHTML = ' ' +
-              '<p> Du entscheidest was wir machen 💓</p> ' +
-              '<button id = "WdWB" class = "Wunsch-button"> Wunsch deiner Wahl</button>'
-
-      const Wunschbutton = document.getElementById('WdWB');
-
-      Wunschbutton.addEventListener('click',function(){
-        window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wunsch-Date+%F0%9F%8E%81', '_blank');
-      })
-    });
-
-  </script>
+  });
+</script>
 </body>
 </html>
