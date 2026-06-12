@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 
 <html>
 
 <head>
-   <style>
+  <style>
     body{
       background-color: #ffe6eb;
       font-family: Caveat, cursive;
@@ -74,55 +74,55 @@
 </head>
 
 <body>
-  <div class="card">
-    <h1>Hallo Schatz! &#10084;&#65039</h1>
-    <p> Willst du mit mir auf ein Date gehen?</p>
+<div class="card">
+  <h1>Hallo Schatz! &#10084;&#65039</h1>
+  <p> Willst du mit mir auf ein Date gehen?</p>
 
-    <button id= "jaBtn" class="ja-button">
-      <b1> Jaaaaaa </b1>
-    </button>
+  <button id= "jaBtn" class="ja-button">
+    <b1> Jaaaaaa </b1>
+  </button>
 
-    <button id= "neinBtn" class="nein-button">
-      <b2> nein danke</b2>
-    </button>
-  </div>
+  <button id= "neinBtn" class="nein-button">
+    <b2> nein danke</b2>
+  </button>
+</div>
 
-  <script>
+<script>
 
-    const jaButton = document.getElementById('jaBtn');
-    const neinButton = document.getElementById('neinBtn');
+  const jaButton = document.getElementById('jaBtn');
+  const neinButton = document.getElementById('neinBtn');
 
-    let aktuelleGroeße = 18;
+  let aktuelleGroeße = 18;
 
-    neinButton.addEventListener('click', function(){
+  neinButton.addEventListener('click', function(){
 
-      if (aktuelleGroeße < 130)
-      {
-        aktuelleGroeße = aktuelleGroeße + 10;
+    if (aktuelleGroeße < 130)
+    {
+      aktuelleGroeße = aktuelleGroeße + 10;
 
-        jaButton.style.fontSize = aktuelleGroeße + "px ";
-        jaButton.style.padding = (aktuelleGroeße * 0.6) + "px " + (aktuelleGroeße * 1.3) + "px";
-      }
+      jaButton.style.fontSize = aktuelleGroeße + "px ";
+      jaButton.style.padding = (aktuelleGroeße * 0.6) + "px " + (aktuelleGroeße * 1.3) + "px";
+    }
 
-      if (aktuelleGroeße >= 100)
-      {
-        neinButton.style.display = "none";
-      }
-    });
+    if (aktuelleGroeße >= 100)
+    {
+      neinButton.style.display = "none";
+    }
+  });
 
-    jaButton.addEventListener('click',function(){
+  jaButton.addEventListener('click',function(){
 
-      document.querySelector('.card').innerHTML = ' ' +
-              '<p> Du entscheidest was wir machen 💓</p> ' +
-              '<button id = "WdWB" class = "Wunsch-button"> Wunsch deiner Wahl (Wird noch geändert)</button>'
+    document.querySelector('.card').innerHTML = ' ' +
+            '<p> Du entscheidest was wir machen 💓</p> ' +
+            '<button id = "WdWB" class = "Wunsch-button"> Wunsch deiner Wahl</button>'
 
-      const Wunschbutton = document.getElementById('WdWB');
+    const Wunschbutton = document.getElementById('WdWB');
 
-      Wunschbutton.addEventListener('click',function(){
-        window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wunsch-Date+%F0%9F%8E%81', '_blank');
-      })
-    });
+    Wunschbutton.addEventListener('click',function(){
+      window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wunsch-Date+%F0%9F%8E%81', '_blank');
+    })
+  });
 
-  </script>
+</script>
 </body>
 </html>
